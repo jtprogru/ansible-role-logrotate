@@ -3,7 +3,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jtprogru/ansible-role-logrotate/CI?label=CI)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jtprogru/ansible-role-logrotate/Release?label=Release)
 ![GitHub](https://img.shields.io/github/license/jtprogru/ansible-role-logrotate)
-[![Ansible Role](https://img.shields.io/ansible/role/54364)](https://galaxy.ansible.com/jtprogru/logrotate/)
+[![Ansible Role](https://img.shields.io/ansible/role/56069)](https://galaxy.ansible.com/jtprogru/logrotate/)
 [![GitHub tag](https://img.shields.io/github/tag/jtprogru/ansible-role-logrotate.svg)](https://github.com/jtprogru/ansible-role-logrotate/tags)
 
 Simple role for manage `logrotate` configuration.
