@@ -1,0 +1,82 @@
+---
+name: CI
+'on':
+  pull_request:
+  push:
+    branches:
+      - develop
+
+defaults:
+  run:
+    working-directory: 'jtprogru.logrotate'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+    # runs-on: self-hosted
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'jtprogru.logrotate'
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Upgrade pip3.
+        run: pip3 install --upgrade pip
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint ansible-lint ansible
+
+      - name: Install netaddr
+        run: sudo apt install --no-install-recommends ieee-data python3-netaddr
+
+      - name: Lint code with yamllint.
+        run: yamllint .
+
+      - name: Lint code with ansible-lint.
+        run: ansible-lint
+
+  molecule:
+    name: Molecule
+    runs-on: ubuntu-20.04
+    # runs-on: self-hosted
+    strategy:
+      matrix:
+        distro:
+          - ubuntu2004
+          - ubuntu1804
+          - debian10
+          - debian9
+          - centos7
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'jtprogru.logrotate'
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Upgrade pip3.
+        run: pip3 install --upgrade pip
+
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule 'molecule[docker]' docker
+
+      - name: Install netaddr
+        run: sudo apt install --no-install-recommends ieee-data python3-netaddr
+
+      - name: Run Molecule tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
