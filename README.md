@@ -28,11 +28,12 @@ Example playbook:
     - jtprogru.logrotate
 ```
 
-## Author
+## Authors
 
-Michael Savin aka `@jtprogru`
-
-Twitter: [![Twitter Follow](https://img.shields.io/twitter/follow/jtprogru?color=gree&style=plastic)](https://twitter.com/jtprogru/)
+- Michael Savin
+  - :octocat: [@jtprogru](https://www.github.com/jtprogru)
+  - :bird: [@jtprogru](https://www.twitter.com/jtprogru)
+  - :moneybag: [savinmi.ru](https://savinmi.ru)
 
 ## License
 
